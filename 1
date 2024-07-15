@@ -1,0 +1,48 @@
+13.1
+
+from datetime import date
+
+current_date = date.today().strftime('%Y-%m-%d')
+
+with open('today.txt', 'w') as file:
+    file.write(current_date)
+
+
+
+13.2
+
+
+'2024-07-15'
+``` &#8203;:citation[oaicite:0]{index=0}&#8203;
+
+13.3
+
+datetime.date(2024, 7, 15)
+``` &#8203;:citation[oaicite:0]{index=0}&#8203;
+
+
+15.1
+
+import multiprocessing
+import random
+import time
+from datetime import datetime
+
+def process_function():
+   
+    wait_time = random.uniform(0, 1)
+    time.sleep(wait_time)
+    
+    current_time = datetime.now().strftime('%H:%M:%S.%f')[:-3]
+    print(f"Process {multiprocessing.current_process().name}: {current_time}")
+
+processes = []
+
+for i in range(3):
+    process = multiprocessing.Process(target=process_function, name=f"Process-{i+1}")
+    processes.append(process)
+    process.start()
+
+for process in processes:
+    process.join()
+
